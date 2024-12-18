@@ -1,0 +1,151 @@
+.py files are called modules. collection of these modules are called libraries
+must be interrelated
+
+" no need to reinvent wheel everytime"
+
+numpy is wiriteen in C and much fater than lists. so it was used for scientific puprose
+
+===============
+core/fundamental of numpy we have a data structure called nd array
+
+nd array:
+fixed size, homogeneous, indexed (including -ve), shape .
+
+2d array: array in which each element is also an array   [matrix is just pictorail]    matrix is just stack up 1d array
+3d array: array in which each element is a also array, whose each element is array  [keep matric (slices) like bread loaf]
+4d array: stack up 3d arrays
+
+
+for n-d array each element is n-1 d array,  for 1d array, its element is scalar (0 dimension)
+in numpy better use word rank for dimension, this dimension is diff from linear algebra ok, so use word rank
+
+[by default when we think about vector its a column vector, vertical: axis 0, horizontal: axis 1]
+
+Shape is tuple : for 2D = (r,c)
+		For 3d = (r,c, no. of slices = stacks )
+
+
+======================
+Why NumPy Defaults to Non-In-Place Operations:
+
+Safety: Avoids unexpected side effects when multiple variables reference the same array.
+Explicitness: Python's design encourages explicit actions. In-place modifications must be explicitly requested (e.g., L **= 2 or np.add() with out).
+Optimization: Allows internal optimizations without being constrained by modifying the original array.
+=======================
+
+
+=======================
+overall why numpy:
+
+effiency :  vectorization and braodcasting learn well
+memory effieicncy :: homogenous so
+optimized function
+interoperatability and integration, use code someherewe else and integrate easily with tensorflow etc 
+makes data analysis easily.
+its open source and good community support
+
+
+*vectorization: no explicit/exclusive loop, instead we have pre-compiled C code 
+eg; np_arr1 * np_arr_2  , well we can do other oprations
+
+*broadcasting:   broadcast each other size to de complexify or enable an operation:
+like: a1 = 1,2  a2 - 1,2,3,4  then a1 becomes 1,2,0,0 hehe such 
+ =======================
+
+
+
+
+
+
+
+day2
+
+
+# When you assign an array or its elements to a new variable, you have to explicitly numpy.copy 
+
+# b is a , this checks if both b and a refers to exact same object, same id
+
+
+
+indexing:
+
+
+
+>>>>  NumPy uses C-order indexing. That means that the last index usually represents the most rapidly changing memory location
+, unlike Fortran or IDL, where the first index represents the most rapidly changing location in memory.
+ This difference represents a great potential for confusion   <<<<
+
+
+NumPy uses C-order indexing, where the last index changes the fastest in memory.
+array = [[1, 2, 3],
+         [4, 5, 6]]
+(0, 0) -> 1
+(0, 1) -> 2
+(0, 2) -> 3
+(1, 0) -> 4
+(1, 1) -> 5
+(1, 2) -> 6
+see last index changes more faster,
+Last index (column): Changes rapidly (0 → 1 → 2 → 0 → 1 → 2).
+First index (row): Changes slowly (0 → 0 → 0 → 1 → 1 → 1).
+
+
+C-order (used by NumPy): Rows are stored first in memory.            (row major)
+Fortran-order: Columns are stored first in memory.                   (colum major)
+The catch: If you’re not careful, loops or computations could get slow if they don’t match the array’s memory layout.
+
+If you're looping over rows (C-order), it's fast because the computer finds the numbers next to each other in memory
+If you're looping over columns (Fortran-order) with a C-order layout, the computer has to "jump" around in memory:
+
+best explain with example musvair numpy 2: 1:05:00 -- 1:07 ...: that is ->
+to reach mat[a][b], base + first go till 'a' rows, then 'total colums' and then add b (given colum), that is: base + (a*c+b)*(size of element)
+
+u can see which major its stored in numpy using flags,
+stride: when we reshape, nothing happens only stride changes. rshape is just a view not copy.
+This is why understanding this memory layout is important, especially for performance-critical code in data science, AIML, or other computational fields.
+
+
+
+
+note that x[0, 2] == x[0][2] though the second case is more inefficient 
+
+comma-separated indices ( x[0, 2] ) : direct indexing in NumPy, which means NumPy immediately accesses the element at row 0, column 2 in one step.
+No intermediate object is created; it directly fetches the value from the array.
+
+nested brackets ( x[0][2] ): x[0] is executed first:This creates a temporary array, which is essentially a new view of the first row of x.
+	    The second index [2] accesses the third element of this temporary array.  memory inefficeint
+
+
+
+
+
+attributes of n d array
+ndim	returns number of dimension of the array
+size	returns number of elements in the array
+dtype	returns data type of elements in the array
+shape	returns the size of the array in each dimension.
+itemsize	returns the size (in bytes) of each elements in the array
+data	returns the buffer containing actual elements of the array in memory
+
+
+
+
+
+
+
+
+
+
+
+2nd--------------------------------------------------------------------
+-----------------------------------
+------------------------------
+------------
+
+NTFS and exfax file manage\
+RSA in cryptography, muliplication of a*b = x is easy, but to factorize x int a and b is difficult prpblem  (application of random), 
+shors algo says that if we have capable quantum machine, we can break RSA.
+
+in python, Js, java its Pseudo random num generator. with separated
+
+
